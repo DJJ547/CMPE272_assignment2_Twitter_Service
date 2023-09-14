@@ -1,7 +1,10 @@
 # CMPE272_assignment2_Twitter_Service
-1.Develop a simple twitter service that implements the Twitter Ads API to programmatically create, retrieve(optional) and delete a Tweet in the Twitter Sandbox environment: [Link](https://developer.twitter.com/en/docs/twitter-ads-api/ads-api-sandbox)
+1.Develop a simple twitter service that implements the Twitter Ads API to programmatically create, retrieve(optional) and delete a Tweet in the Twitter Sandbox environment.
 
 2.Develop a simple Web UI that  implements your service and demonstrates the functions.
+
+## The twitter sandbox is here:
+[https://developer.twitter.com/en/docs/twitter-ads-api/ads-api-sandbox](https://developer.twitter.com/en/docs/twitter-ads-api/ads-api-sandbox)
 
 ## The twitter documentation is here:
 
