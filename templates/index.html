@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Twitter Ads API</title>
+</head>
+
+<body>
+    <h1>Create and Delete Tweets</h1>
+    <textarea id="tweetContent" placeholder="Enter your tweet" style="width: 300px; height: 150px;"></textarea><br>
+    <button onclick="createTweet()">Create Tweet</button><br><br>
+
+    <input type="text" id="tweetId" placeholder="Enter the id of tweet to delete" style="width: 300px; height: 40px;"><br>
+    <button onclick="deleteTweet()">Delete Tweet</button><br><br>
+
+    <div id="status"></div>
+</body>
+
+<script>
+    function createTweet() {
+        var text = document.getElementById('tweetContent').value;
+        const pindiv = document.getElementById('PIN');
+
+        fetch('/process_text', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({text: text}),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch data');
+            }
+        })
+        .then(data => {
+            console.log(data);
+            document.getElementById('status').innerText = data.result;
+        });
+    }
+    function deleteTweet() {
+        var text = document.getElementById('tweetId').value;
+
+        fetch('/delete_tweet', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({text: text}),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch data');
+            }
+        })
+        .then(data => {
+            console.log(data);
+            document.getElementById('status').innerText = data.result;
+        });
+    }
+</script>
+
+</html>
