@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Twitter Ads API</title>
+</head>
+
+<body>
+    <div class="box">
+        <h1>Create and Delete Tweets</h1>
+        <p>authenticate required for every create and delete tweet</p>
+
+        <button onclick="Authenticate()">Authenticate</button><br><br>
+
+        <input type="text" id="pin" placeholder="enter pin you get from authenticate">
+        <button onclick="EnterPin()">Enter PIN</button> <br> <br>
+
+        <textarea id="tweetContent" placeholder="Enter your tweet" style="width: 300px; height: 150px;"></textarea><br>
+        <button onclick="createTweet()">Create Tweet</button><br><br>
+
+        <input type="text" id="tweetId" placeholder="Enter the id of tweet to delete"
+            style="width: 300px; height: 40px;"><br>
+        <button onclick="deleteTweet()">Delete Tweet</button><br><br>
+        <div id="status"></div>
+    </div>
+
+</body>
+
+<script>
+    function Authenticate() {
+        fetch('/authenticate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: 'authenticate please' }),
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                console.log(data);
+                document.getElementById('status').innerText = data.result;
+            });
+    }
+    function createTweet() {
+        var text = document.getElementById('tweetContent').value;
+
+        fetch('/process_text', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: text }),
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                console.log(data);
+                document.getElementById('status').innerText = data.result;
+            });
+    }
+    function deleteTweet() {
+        var text = document.getElementById('tweetId').value;
+
+        fetch('/delete_tweet', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: text }),
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                console.log(data);
+                document.getElementById('status').innerText = data.result;
+            });
+    }
+    function EnterPin() {
+        var text = document.getElementById('pin').value;
+
+        fetch('/get_pin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: text }),
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                console.log(data);
+                document.getElementById('status').innerText = data.result;
+            });
+    }
+</script>
+<style>
+
+        .box {
+            width: 400px; 
+            height: 500px; 
+            background-color: lightgray;
+            padding: 15px;
+            border: 2px solid #333; 
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+</style>
+
+</html>
