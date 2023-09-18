@@ -81,6 +81,7 @@ async def createTweet(str):
     print(json.dumps(json_response, indent=4, sort_keys=True))
     return json_response['data']['id']
 
+# Coded by Walton
 async def deleteTweet(id):
     oauth = await oauth_authentication2()
     response = oauth.delete("https://api.twitter.com/2/tweets/{}".format(id))
