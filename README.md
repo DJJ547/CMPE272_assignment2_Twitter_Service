@@ -23,7 +23,7 @@
 # Here's the offical Twitter api GitHub: [https://github.com/twitterdev](https://github.com/twitterdev)
 
 ## To run this app, you need
-1. install required Python packages
+1. install required Python packages (requests_oauthlib, flask, dotenv, pytest)
 2. From your project root directory create a file named ".env", put in your consumer key and secret in this format:
 ```linguist
 CONSUMER_KEY="{your own Twitter consumer key}"
