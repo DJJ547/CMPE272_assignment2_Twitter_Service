@@ -4,11 +4,18 @@ import webbrowser
 from flask import Flask, render_template, request, jsonify
 import asyncio
 
-consumer_key = 'pWCBijvKjZijuZIt5G0i7gGjS'
-consumer_secret = 'yO7dD0j4KhHkn6LD2wAkkkI69Wo2K4A9KM80NCwpkXYrJ0FJMy'
+with open('credential.json', 'r') as file:
+    credentials = json.load(file)
+
+consumer_key = credentials["CONSUMER_KEY"]
+consumer_secret = credentials["CONSUMER_SECRET"]
+# access_token = credentials["ACCESS_TOKEN"]
+# access_token_secret = credentials["ACCESS_TOKEN_SECRET"]
+
 t1 = 0
 t2 = 0
 pin = 0
+
 
 async def oauth_authentication1():
     # 3 steps of oauth
